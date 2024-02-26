@@ -133,10 +133,10 @@ const LeftSide = () => {
       </ListItemButton>
       <Divider />
       <Collapse in={open} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding >
-          {myList.map((item, index) => {
+        <List component="div" disablePadding>
+          {openFruits.map((item, index) => {
             return (
-              <List key={index} >
+              <List key={index}>
                 <ListItemButton
                   onClick={() => {
                     handleFruitsClick(item);
@@ -149,6 +149,7 @@ const LeftSide = () => {
                   {item.isOpen ? <ExpandLess /> : <ExpandMore />}
                 </ListItemButton>
                 <Divider />
+
                 <Collapse in={item.isOpen} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
                     <ListItemButton sx={{ pl: 4 }}>
