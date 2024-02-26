@@ -3,19 +3,19 @@ import { Box, Button, Stack, Typography } from "@mui/material";
 const FirstSection = () => {
   const drawerWidth = 300;
   return (
-    <Box
+    <Stack
       sx={{
         position: "relative",
-        width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: `${drawerWidth}px`,
+        width: {md:`calc(100% - ${drawerWidth}px)`},
+        marginLeft:{md: `${drawerWidth}px`},
+        backgroundImage:`url(/assets/image/slider-01.jpg.png)`,
+        height:"70vh",
+        alignItems:"center"
       }}
     >
-      <img
-        src={"/assets/image/slider-01.jpg.png"}
-        alt="Baby"
-      />
+      
       <Box
-        sx={{ position: "absolute", top: "60px", width: "470px", left: "60px" }}
+        sx={{position: "absolute", top:{xs:"20px",sm:"60px"} , width:{sm:"470px"} , left: "60px" }}
       >
         <Typography
           variant="body1"
@@ -23,11 +23,11 @@ const FirstSection = () => {
           sx={{
             color: "#166534",
             backgroundImage: "linear-gradient(to right, #16A34A80 , #22C55E00)",
-            width: "35%",
+            width: {xs:"40%",sm:"35%"},
             borderRadius:"6px",
-            textAlign:"center",
+            textAlign:{md:"center"},
             fontWeight:600,
-            mb:"37px"
+            mb:{xs:"20px",md:"37px"}
           }}
         >
           Weekend Discount
@@ -59,7 +59,7 @@ const FirstSection = () => {
       
         </Stack>
       </Box>
-    </Box>
+    </Stack>
   );
 };
 

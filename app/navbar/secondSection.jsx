@@ -28,10 +28,11 @@ const SecondSection = () => {
     sx={{
       height: "41px",
       bgcolor: "#FFFFFF",
-      display: "flex",
+      display: {xs:"none",md:"flex"},
       justifyContent:"space-between",
       alignItems: "center",
       color: "#6B7280",
+      mx:1
     }}
   >
     <Stack

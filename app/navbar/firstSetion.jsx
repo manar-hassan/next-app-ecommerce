@@ -9,8 +9,10 @@ const FirstSetion = () => {
       height: {l:"41px"},
       bgcolor: "#634C9F",
       display: "flex",
-      justifyContent:{md:"space-around"},
+      flexDirection:{xs:"column",md:"row"},
+      justifyContent:"space-around",
       alignItems: "center",
+      textAlign:"center",
       color: "#FFFFFF",
     }}
   >

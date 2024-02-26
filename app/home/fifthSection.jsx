@@ -1,4 +1,4 @@
-import { Stack, Box, Typography, Button, Divider } from "@mui/material";
+import { Stack, Box, Typography, Button, Divider, Card, CardActionArea, CardActions, CardContent } from "@mui/material";
 
 const FifthSection = () => {
   const myList = [
@@ -6,50 +6,46 @@ const FifthSection = () => {
       title: "Only This Week",
       paragraph: "Provides you experienced quality products",
       text: "Feed your family the best",
-      icon: <img src={"/assets/image/banner-01.jpg.png"} alt="Payment" />,
+      icon: <img src={"/assets/image/banner-04.jpg.png"} alt="Payment" />,
       path: "/",
     },
     {
       title: "Only This Week",
       paragraph: "Shopping with us for better quality and the best price",
       text: "Only this week. Don’t miss...",
-      icon: <img src={"/assets/image/banner-02.jpg.png"} alt="stocks" />,
+      icon: <img src={"/assets/image/banner-05.jpg.png"} alt="stocks" />,
       path: "/pages",
     },
     {
       title: "Only This Week",
       paragraph: "Get the best quality products at the lowest prices ",
       text: "A different kind of grocery store",
-      icon: <img src={"/assets/image/banner-03.jpg.png"} alt="Quality" />,
+      icon: <img src={"/assets/image/banner-06.jpg.png"} alt="Quality" />,
       path: "/groups",
     },
     {
       title: "Only This Week",
       paragraph: "Where you get your all favorite brands under one roof",
       text: "Only this week. Don’t miss...",
-      icon: <img src={"/assets/image/banner-03.jpg.png"} alt="Quality" />,
+      icon: <img src={"/assets/image/banner-07.jpg.png"} alt="Quality" />,
       path: "/groups",
     },
   ];
   return (
-    <Stack sx={{ flexDirection: "row", mt: 5 }}>
+<Stack  sx={{flexDirection: {sm:"row"},justifyContent:"center",alignItems:"center", mt: 5,mx:10,gap:2}}>
       {myList.map((item) => {
         return (
-          <Box sx={{ position: "relative" }}>
+          <Card sx={{Width: 345,position:"relative" }}>
+          <CardActionArea>
+            
             {item.icon}
-            <Box
-              sx={{
-                position: "absolute",
-                top: "20px",
-                width: "470px",
-                left: "30px",
-              }}
-            >
-              <Typography
+          
+            <CardContent  sx={{position:"absolute",top:0}}>
+            <Typography
+          
                 variant="body1"
                 color="#EA580C"
-                sx={{
-                  width: "35%",
+                sx={{  
                   borderRadius: "6px",
                   textAlign: "left",
                   fontWeight: 500,
@@ -61,7 +57,7 @@ const FifthSection = () => {
               <Typography
                 variant="subtitle1"
                 color="#111827"
-                sx={{ fontWeight: 700, width: "200px" }}
+                sx={{ fontWeight: 700 }}
               >
                 {item.paragraph}
               </Typography>
@@ -72,15 +68,17 @@ const FifthSection = () => {
                 sx={{
                   flexDirection: "row",
                   alignItems: "center",
-                  mt: 3,
+                  mt: 1,
                   gap: 2,
                 }}
               >
-                <Button
+              <CardActions>
+            
+                {/* <Button
                   variant="contained"
                   size="medium"
                   sx={{
-                    width: "30%",
+                    // width: "40%",
                     bgcolor: "#FFFFFF",
                     color: "#212529",
                     border: "#E5E7EB",
@@ -94,14 +92,22 @@ const FifthSection = () => {
                     alt="Baby"
                     style={{ marginLeft: "7px" }}
                   />
-                </Button>
-              </Stack>
-            </Box>
-          </Box>
-        );
-      })}
-      <Divider />
+                </Button> */}
+              
+          </CardActions>
+          </Stack>
+            </CardContent>
+            
+        
+          </CardActionArea>
+        
+        </Card>
+          );
+        })}
     </Stack>
+  
+    
+    
   );
 }
 

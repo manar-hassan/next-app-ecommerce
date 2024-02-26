@@ -6,6 +6,7 @@ import SecondSection from "./navbar/secondSection";
 import ThirdSection from "./navbar/thirdSection";
 import FourthSection from "./navbar/fourthSection";
 import LeftSide from "./leftside/leftSide";
+import Footer from "./footer/footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -23,6 +24,8 @@ export default function RootLayout({ children }) {
           <FourthSection />
           
         {children}
+
+        <Footer/>
       </body>
     </html>
   );

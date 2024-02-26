@@ -43,11 +43,11 @@ const SecondSection = () => {
     },
   ];
   return (
-    <Stack sx={{ flexDirection: "row" }}>
+    <Box sx={{ display:"grid",gridTemplateColumns:{sm:"auto auto",md:"auto auto auto auto"},mx:10 }}>
       {myList.map((item) => {
         return (
           <Box sx={{position:"relative" }}>
-            <Stack sx={{ flexDirection: "row" }}>
+            <Stack sx={{ flexDirection: "row" ,height:130}}>
               <span style={{ position: "absolute", bottom: 10 }}>
                 {item.icon}
               </span>
@@ -85,7 +85,7 @@ const SecondSection = () => {
         );
       })}
       
-    </Stack>
+    </Box>
   );
 };
 

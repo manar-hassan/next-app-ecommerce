@@ -5,6 +5,9 @@ import {
   Typography,
   Divider,
   Button,
+  Card,
+  CardActionArea,
+  CardActions,
 } from "@mui/material";
 import React from "react";
 
@@ -35,76 +38,79 @@ const ThirdSection = () => {
     },
   ];
   return (
-    <Stack sx={{ flexDirection: "row", mt: 5 }}>
-      {myList.map((item) => {
-        return (
-          <Box sx={{ position: "relative" }}>
-            {item.icon}
-            <Box
-              sx={{
-                position: "absolute",
-                top: "20px",
-                width: "470px",
-                left: "30px",
+    <Stack  sx={{ flexDirection:{ sm:"row",justifyContent:"center",alignItems:"center" },mt: 5,mx:10,gap:2}}>
+    {myList.map((item) => {
+      return (
+        <Card sx={{Width: 345,position:"relative" }}>
+        <CardActionArea>
+          
+          {item.icon}
+        
+          <CardContent  sx={{position:"absolute",top:0}}>
+          <Typography
+        
+              variant="body1"
+              color="#EA580C"
+              sx={{  
+                borderRadius: "6px",
+                textAlign: "left",
+                fontWeight: 500,
+                mb: "10px",
               }}
             >
-              <Typography
-                variant="body1"
-                color="#EA580C"
+              {item.title}
+            </Typography>
+            <Typography
+              variant="subtitle1"
+              color="#111827"
+              sx={{ fontWeight: 700 }}
+            >
+              {item.paragraph}
+            </Typography>
+            <Typography variant="body1" color="#6B7280" sx={{ mt: 1 }}>
+              {item.text}
+            </Typography>
+            <Stack
+              sx={{
+                flexDirection: "row",
+                alignItems: "center",
+                mt: 1,
+                gap: 2,
+              }}
+            >
+            <CardActions>
+          
+              {/* <Button
+                variant="contained"
+                size="medium"
                 sx={{
-                  width: "35%",
-                  borderRadius: "6px",
-                  textAlign: "left",
-                  fontWeight: 500,
-                  mb: "10px",
+                  // width: "40%",
+                  bgcolor: "#FFFFFF",
+                  color: "#212529",
+                  border: "#E5E7EB",
+                  borderRadius: "999px",
+                  fontWeight: 700,
                 }}
               >
-                {item.title}
-              </Typography>
-              <Typography
-                variant="subtitle1"
-                color="#111827"
-                sx={{ fontWeight: 700, width: "200px" }}
-              >
-                {item.paragraph}
-              </Typography>
-              <Typography variant="body1" color="#6B7280" sx={{ mt: 1 }}>
-                {item.text}
-              </Typography>
-              <Stack
-                sx={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  mt: 3,
-                  gap: 2,
-                }}
-              >
-                <Button
-                  variant="contained"
-                  size="medium"
-                  sx={{
-                    width: "30%",
-                    bgcolor: "#FFFFFF",
-                    color: "#212529",
-                    border: "#E5E7EB",
-                    borderRadius: "999px",
-                    fontWeight: 700,
-                  }}
-                >
-                  Shop Now
-                  <img
-                    src={"/assets/image/icon.png"}
-                    alt="Baby"
-                    style={{ marginLeft: "7px" }}
-                  />
-                </Button>
-              </Stack>
-            </Box>
-          </Box>
+                Shop Now
+                <img
+                  src={"/assets/image/icon.png"}
+                  alt="Baby"
+                  style={{ marginLeft: "7px" }}
+                />
+              </Button> */}
+            
+        </CardActions>
+        </Stack>
+          </CardContent>
+          
+      
+        </CardActionArea>
+      
+      </Card>
         );
       })}
-      <Divider />
-    </Stack>
+  </Stack>
   );
 };
 

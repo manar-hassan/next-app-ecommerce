@@ -1,0 +1,14 @@
+.c1 {
+  grid-area: 1 / 1/4/1;
+flex-direction: column;
+}
+.c4{
+  grid-area: 1 / 3/ 4 / 4;
+  flex-direction: column;
+}
+.timer1,.timer4,.b1,.b4{
+display: none;
+}
+.typoStack1,.typoStack4{
+  justify-content: start;
+}

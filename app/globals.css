@@ -100,6 +100,20 @@ a {
   color: inherit;
   text-decoration: none;
 }
+.text{
+  display: -webkit-box; 
+            -webkit-box-orient: vertical; 
+            -webkit-line-clamp: 2; 
+            overflow: hidden; 
+            text-overflow: ellipsis; 
+}
+.textGrid{
+            background: -webkit-linear-gradient(#EA580C00,#EA580C66);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            
+}
+
 
 @media (prefers-color-scheme: dark) {
   html {

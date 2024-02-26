@@ -1,90 +1,82 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
-  Home,
-  Article,
-  Group,
-  Storefront,
-  Person,
-  Settings,
   ExpandLess,
   ExpandMore,
   StarBorder,
   BorderAllOutlined,
+  Inbox,
+  Mail,
 } from "@mui/icons-material";
 import {
   Box,
   Collapse,
   Divider,
+  Drawer,
   List,
   ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  ListSubheader,
+  Toolbar,
 } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAppleWhole } from "@fortawesome/free-solid-svg-icons";
-
+const myList = [
+  {
+    text: "Fruits & Vegetables",
+    icon: <img src={"/assets/image/apple.svg.png"} alt="apple" />,
+    id: 0,
+  },
+  {
+    text: "Meats & Seafood",
+    icon: <img src={"/assets/image/meat.svg.png"} alt="meat" />,
+    id: 1,
+  },
+  {
+    text: "Breaksfast & Dairy",
+    icon: <img src={"/assets/image/boiled-egg.svg fill.png"} alt="egg" />,
+    id: 2,
+  },
+  {
+    text: "Breads & Bakery",
+    icon: <img src={"/assets/image/toast-bread.svg.png"} alt="toast" />,
+    id: 3,
+  },
+  {
+    text: "Beverages",
+    icon: <img src={"/assets/image/cup.svg.png"} alt="cup" />,
+    id: 4,
+  },
+];
 const LeftSide = () => {
   const [open, setOpen] = useState(true);
 
   const handleClick = () => {
     setOpen(!open);
   };
-  const [openFruits, setOpenFruits] = useState(false);
-
-  const handleFruitsClick = () => {
-    setOpenFruits(!openFruits);
-  };
-  const [openMeats, setOpenMeats] = useState(false);
-
-  const handleMeatsClick = () => {
-    setOpenMeats(!openMeats);
-  };
-  const [openBreaksfast, setOpenBreaksfast] = useState(false);
-
-  const handleBreaksfastClick = () => {
-    setOpenBreaksfast(!openBreaksfast);
-  };
-  const [openBreads, setOpenBreads] = useState(false);
-
-  const handleBreadsClick = () => {
-    setOpenBreads(!openBreads);
-  };
-  const [openBeverages, setOpenBeverages] = useState(false);
-
-  const handleBeveragesClick = () => {
-    setOpenBeverages(!openBeverages);
+  const [openFruits, setOpenFruits] = useState([]);
+  const handleFruitsClick = (item) => {
+    setOpenFruits(
+      openFruits.map((e) =>
+        e.id === item.id ? { ...e, isOpen: !e.isOpen } : e
+      )
+    );
   };
 
-  const myList = [
-    {
-      text: "Fruits & Vegetables",
-      icon: <img src={"/assets/image/apple.svg.png"} alt="apple" />,
-    },
-    {
-      text: "Meats & Seafood",
-      icon: <img src={"/assets/image/meat.svg.png"} alt="meat" />,
-    },
-    {
-      text: "Breaksfast & Dairy",
-      icon: <img src={"/assets/image/boiled-egg.svg fill.png"} alt="egg" />,
-    },
-    {
-      text: "Breads & Bakery",
-      icon: <img src={"/assets/image/toast-bread.svg.png"} alt="toast" />,
-    },
-    {
-      text: "Beverages",
-      icon: <img src={"/assets/image/cup.svg.png"} alt="cup" />,
-    },
-  ];
+  useEffect(() => {
+    setOpenFruits(myList.map((e) => ({ ...e, isOpen: false })));
+  }, [myList]);
+
   const myList2 = [
     {
       text: "Frozen Foods",
-      icon: <img src={"/assets/image/snowflake.svg fill.png"} alt="Frozen Foods" />,
+      icon: (
+        <img src={"/assets/image/snowflake.svg fill.png"} alt="Frozen Foods" />
+      ),
       path: "/",
     },
     {
@@ -115,149 +107,78 @@ const LeftSide = () => {
       path: "/setting",
     },
   ];
+  const drawerWidth = 240;
+
   return (
-    <Box
-      flexGrow={1}
-      className="listColor small"
-      minWidth="300px"
-      sx={{ display: { md: "block", position: "absolute", top: 135 } }}
+    <List
+      sx={{
+        width: "100%",
+        maxWidth: 300,
+        bgcolor: "background.paper",
+        overflow: "auto",
+        maxHeight: 501,
+        "& ul": { padding: 0 },
+        display: { xs: "none", md: "block" },
+        position: "absolute",
+        top: 145,
+      }}
+      subheader={<li />}
     >
-      {/* <List
-        sx={{
-          width: "300px",
-          border: "1px solid #E5E7EB",
-          borderRadius: "0px, 0px, 8px, 8px",
-        }}
-      >
-        <ListItemButton onClick={handleClick}>
-          <ListItemIcon>
-            <BorderAllOutlined />
-          </ListItemIcon>
-          <ListItemText primary={"All Categories"} />
-          {open ? <ExpandLess /> : <ExpandMore />}
-        </ListItemButton>
-        <Divider />
-        <Collapse in={open} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            <ListItemButton onClick={handleFruitsClick}>
-              <ListItemIcon>
-                <img src={"/assets/image/apple.svg.png"} alt="apple"></img>
-              </ListItemIcon>
-              <ListItemText primary="Fruits & Vegetables" />
-              {openFruits ? <ExpandLess /> : <ExpandMore />}
-            </ListItemButton>
-            <Divider />
-            <Collapse in={openFruits} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
-                <ListItemButton sx={{ pl: 4 }}>
+      <ListItemButton onClick={handleClick}>
+        <ListItemIcon>
+          <BorderAllOutlined />
+        </ListItemIcon>
+        <ListItemText primary={"All Categories"} />
+        {open ? <ExpandLess /> : <ExpandMore />}
+      </ListItemButton>
+      <Divider />
+      <Collapse in={open} timeout="auto" unmountOnExit>
+        <List component="div" disablePadding >
+          {myList.map((item, index) => {
+            return (
+              <List key={index} >
+                <ListItemButton
+                  onClick={() => {
+                    handleFruitsClick(item);
+                  }}
+                >
                   <ListItemIcon>
-                    <StarBorder />
+                    <span>{item.icon}</span>
                   </ListItemIcon>
-                  <ListItemText primary="Starred" />
+                  <ListItemText primary={item.text} />
+                  {item.isOpen ? <ExpandLess /> : <ExpandMore />}
                 </ListItemButton>
-              </List>
-            </Collapse>
-
-            <ListItemButton onClick={handleMeatsClick}>
-              <ListItemIcon>
-                <img src={"/assets/image/meat.svg.png"} alt="apple"></img>
-              </ListItemIcon>
-              <ListItemText primary="Meats & Seafood" />
-              {openMeats ? <ExpandLess /> : <ExpandMore />}
-            </ListItemButton>
-            <Divider />
-            <Collapse in={openMeats} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
-                <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemIcon>
-                    <StarBorder />
-                  </ListItemIcon>
-                  <ListItemText primary="Starred" />
-                </ListItemButton>
-              </List>
-            </Collapse>
-
-            <ListItemButton onClick={handleBreaksfastClick}>
-              <ListItemIcon>
-                <img
-                  src={"/assets/image/boiled-egg.svg fill.png"}
-                  alt="apple"
-                ></img>
-              </ListItemIcon>
-              <Divider />
-              <ListItemText primary="Breaksfast & Dairy" />
-              {openBreaksfast ? <ExpandLess /> : <ExpandMore />}
-            </ListItemButton>
-            <Divider />
-            <Collapse in={openBreaksfast} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
-                <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemIcon>
-                    <StarBorder />
-                  </ListItemIcon>
-                  <ListItemText primary="Starred" />
-                </ListItemButton>
-              </List>
-            </Collapse>
-
-            <ListItemButton onClick={handleBreadsClick}>
-              <ListItemIcon>
-                <img
-                  src={"/assets/image/toast-bread.svg.png"}
-                  alt="apple"
-                ></img>
-              </ListItemIcon>
-              <ListItemText primary="Breads & Bakery" />
-              {openBreads ? <ExpandLess /> : <ExpandMore />}
-            </ListItemButton>
-            <Divider />
-            <Collapse in={openBreads} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
-                <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemIcon>
-                    <StarBorder />
-                  </ListItemIcon>
-                  <ListItemText primary="Starred" />
-                </ListItemButton>
-              </List>
-            </Collapse>
-
-            <ListItemButton onClick={handleBeveragesClick}>
-              <ListItemIcon>
-                <img src={"/assets/image/cup.svg.png"} alt="Beverages"></img>
-              </ListItemIcon>
-              <ListItemText primary="Beverages" />
-              {openBeverages ? <ExpandLess /> : <ExpandMore />}
-            </ListItemButton>
-            <Divider />
-            <Collapse in={openBeverages} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
-                <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemIcon>
-                    <StarBorder />
-                  </ListItemIcon>
-                  <ListItemText primary="Starred" />
-                </ListItemButton>
-              </List>
-            </Collapse>
-
-            {myList2.map((item) => {
-              return (
-                <List component="div" disablePadding>
-                  <ListItem key={item.text} disablePadding>
-                    <ListItemButton >
-                      <ListItemIcon>{item.icon}</ListItemIcon>
-                      <ListItemText primary={item.text} />
+                <Divider />
+                <Collapse in={item.isOpen} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    <ListItemButton sx={{ pl: 4 }}>
+                      <ListItemIcon>
+                        <StarBorder />
+                      </ListItemIcon>
+                      <ListItemText primary="Starred" />
                     </ListItemButton>
-                  </ListItem>
-                  <Divider />
-                </List>
-              );
-            })}
-          </List>
-        </Collapse>
-      </List> */}
-    </Box>
+                  </List>
+                </Collapse>
+              </List>
+            );
+          })}
+
+          {myList2.map((item) => {
+            return (
+              <List key={item.text} component="div" disablePadding>
+                <ListItem key={item.text} disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>{item.icon}</ListItemIcon>
+                    <ListItemText primary={item.text} />
+                  </ListItemButton>
+                </ListItem>
+                <Divider />
+              </List>
+            );
+          })}
+        </List>
+      </Collapse>
+    </List>
   );
 };
 

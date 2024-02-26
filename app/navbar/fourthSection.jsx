@@ -9,15 +9,18 @@ const FourthSection = () => {
       sx={{
         flexDirection: "row",
         justifyContent: "space-between",
-        ml: { sm: `${drawerWidth}px` },
-        width: `calc(100% - ${drawerWidth}px)`,
-        height:"48px"
+        alignContent:"center",
+        ml: { md: `${drawerWidth}px` },
+        width: {md:`calc(100% - ${drawerWidth}px)`},
+        height:"48px",
+        display:{xs:"none",sm:"flex"},
+        
       }}
     >
       <Stack
         sx={{
           flexDirection: "row",
-          justifyContent: "center",
+          justifyContent: "space-between",
         }}
       >
         <Button
