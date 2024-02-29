@@ -9,12 +9,14 @@ import {
   BorderAllOutlined,
   Inbox,
   Mail,
+  Menu,
 } from "@mui/icons-material";
 import {
   Box,
   Collapse,
   Divider,
   Drawer,
+  IconButton,
   List,
   ListItem,
   ListItemButton,
@@ -107,79 +109,129 @@ const LeftSide = () => {
       path: "/setting",
     },
   ];
-  const drawerWidth = 240;
+  const drawerWidth = 300;
+  const [blockOrNone, setblockOrNone] = useState("none");
+  const [drawerType, setdrawerType] = useState("permanent");
+  const showDrawer = () => {
+    setblockOrNone("block");
+    setdrawerType("temporary");
+  };
+  const closeDrawer = () => {
+    setblockOrNone("none");
+    setdrawerType("permanent");
+  };
 
   return (
-    <List
-      sx={{
-        width: "100%",
-        maxWidth: 300,
-        bgcolor: "background.paper",
-        overflow: "auto",
-        maxHeight: 501,
-        "& ul": { padding: 0 },
-        display: { xs: "none", md: "block" },
-        position: "absolute",
-        top: 145,
-      }}
-      subheader={<li />}
-    >
-      <ListItemButton onClick={handleClick}>
-        <ListItemIcon>
-          <BorderAllOutlined />
-        </ListItemIcon>
-        <ListItemText primary={"All Categories"} />
-        {open ? <ExpandLess /> : <ExpandMore />}
-      </ListItemButton>
-      <Divider />
-      <Collapse in={open} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
-          {openFruits.map((item, index) => {
-            return (
-              <List key={index}>
-                <ListItemButton
-                  onClick={() => {
-                    handleFruitsClick(item);
-                  }}
-                >
-                  <ListItemIcon>
-                    <span>{item.icon}</span>
-                  </ListItemIcon>
-                  <ListItemText primary={item.text} />
-                  {item.isOpen ? <ExpandLess /> : <ExpandMore />}
-                </ListItemButton>
-                <Divider />
-
-                <Collapse in={item.isOpen} timeout="auto" unmountOnExit>
-                  <List component="div" disablePadding>
-                    <ListItemButton sx={{ pl: 4 }}>
+    <>
+      <IconButton
+        onClick={() => {
+          showDrawer();
+        }}
+        sx={{
+          mr: "9px",
+          display: { md: "none" },
+          position: "absolute",
+          top: 90,
+          left: 90,
+        }}
+      >
+        <Menu />
+      </IconButton>
+      <Drawer
+        sx={{
+          display: { xs: blockOrNone, md: "block" },
+          width: drawerWidth,
+          flexShrink: 0,
+          "& .MuiDrawer-paper": {
+            width: drawerWidth,
+            boxSizing: "border-box",
+            position: { md: "absolute" },
+            top: { md: 145 },
+            maxHeight: { md: 501 },
+          },
+        }}
+        // @ts-ignore
+        variant={drawerType}
+        anchor="left"
+        open={true}
+        onClose={() => {
+          closeDrawer();
+        }}
+      >
+        <List
+          sx={
+            {
+              // width: "100%",
+              // maxWidth: 300,
+              // bgcolor: "background.paper",
+              // overflow: "auto",
+              // maxHeight: 501,
+              // "& ul": { padding: 0 },
+              // display: { xs: blockOrNone, md: "block" },
+              // position: "absolute",
+              // top: 145,
+            }
+          }
+          subheader={<li />}
+        >
+          <ListItemButton onClick={handleClick}>
+            <ListItemIcon>
+              <BorderAllOutlined />
+            </ListItemIcon>
+            <ListItemText primary={"All Categories"} />
+            {open ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
+          <Divider />
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              {openFruits.map((item, index) => {
+                return (
+                  <List key={index}>
+                    <ListItemButton
+                      onClick={() => {
+                        handleFruitsClick(item);
+                      }}
+                    >
                       <ListItemIcon>
-                        <StarBorder />
+                        <span>{item.icon}</span>
                       </ListItemIcon>
-                      <ListItemText primary="Starred" />
+                      <ListItemText primary={item.text} />
+                      {item.isOpen ? <ExpandLess /> : <ExpandMore />}
                     </ListItemButton>
-                  </List>
-                </Collapse>
-              </List>
-            );
-          })}
+                    <Divider />
 
-          {myList2.map((item) => {
-            return (
-              <List key={item.text} component="div" disablePadding>
-                <ListItem key={item.text} disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon>{item.icon}</ListItemIcon>
-                    <ListItemText primary={item.text} />
-                  </ListItemButton>
-                </ListItem>
-                <Divider />
-              </List>
-            );
-          })}
+                    <Collapse in={item.isOpen} timeout="auto" unmountOnExit>
+                      <List component="div" disablePadding>
+                        <ListItemButton sx={{ pl: 4 }}>
+                          <ListItemIcon>
+                            <StarBorder />
+                          </ListItemIcon>
+                          <ListItemText primary="Starred" />
+                        </ListItemButton>
+                      </List>
+                    </Collapse>
+                  </List>
+                );
+              })}
+
+              {myList2.map((item) => {
+                return (
+                  <List key={item.text} component="div" disablePadding>
+                    <ListItem key={item.text} disablePadding>
+                      <ListItemButton>
+                        <ListItemIcon>{item.icon}</ListItemIcon>
+                        <ListItemText primary={item.text} />
+                      </ListItemButton>
+                    </ListItem>
+                    <Divider />
+                  </List>
+                );
+              })}
+            </List>
+          </Collapse>
         </List>
-      </Collapse>
-    </List>
+      </Drawer>
+    </>
   );
 };
 

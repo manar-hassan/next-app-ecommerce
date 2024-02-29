@@ -80,7 +80,7 @@ const SecondSection = () => {
                 </Typography>
               </CardContent>
             </Stack>
-            <Divider sx={{mt:2}} />
+            <Divider sx={{mt:{sm:4}}} />
           </Box>
         );
       })}

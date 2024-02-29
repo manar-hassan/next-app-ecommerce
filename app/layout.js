@@ -5,7 +5,6 @@ import FirstSetion from "./navbar/firstSetion";
 import SecondSection from "./navbar/secondSection";
 import ThirdSection from "./navbar/thirdSection";
 import FourthSection from "./navbar/fourthSection";
-import LeftSide from "./leftside/leftSide";
 import Footer from "./footer/footer";
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,14 +17,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-          <FirstSetion />
-          <SecondSection />
-          <ThirdSection />
-          <FourthSection />
-          
+        <FirstSetion />
+        <SecondSection />
+        <ThirdSection />
+        <FourthSection />
+
         {children}
 
-        <Footer/>
+        <Footer />
       </body>
     </html>
   );

@@ -41,7 +41,7 @@ const SixthSection = () => {
     const interval = setInterval(() => getTime(deadline), 1000);
   });
   return (
-    <Stack sx={{mx:10}}>
+    <Stack sx={{ mx: 10 }}>
       <Stack
         sx={{
           flexDirection: { xs: "column", md: "row" },
@@ -106,24 +106,27 @@ const SixthSection = () => {
                     flexDirection: "row",
                     gap: 1,
                     ml: 2,
-                    mt:1,
+                    mt: 1,
                     textAlign: "center",
-                  
                   }}
                 >
-                  <Typography variant="body1" color="white" sx={{  bgcolor:"#DC2626",p:1,mb:1,borderRadius:"2px"}}>
-                  {Days < 10 ? "0" + Days : Days}
-                    :
-                    {Hours < 10 ? "0" + Hours : Hours}
-                    :
-                    {Minutes < 10 ? "0" + Minutes : Minutes}
-                    :
-                    <span style={{color:"black"}}>
-                    {Seconds < 10 ? "0" + Seconds : Seconds}
-
+                  <Typography
+                    variant="body1"
+                    color="white"
+                    sx={{
+                      bgcolor: "#DC2626",
+                      p: 1,
+                      mb: 1,
+                      borderRadius: "2px",
+                    }}
+                  >
+                    {Days < 10 ? "0" + Days : Days}:
+                    {Hours < 10 ? "0" + Hours : Hours}:
+                    {Minutes < 10 ? "0" + Minutes : Minutes}:
+                    <span style={{ color: "black" }}>
+                      {Seconds < 10 ? "0" + Seconds : Seconds}
                     </span>
                   </Typography>
-                
                 </Stack>
               </Box>
 

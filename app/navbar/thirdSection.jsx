@@ -1,3 +1,4 @@
+"use client";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
@@ -9,9 +10,12 @@ import SearchIcon from "@mui/icons-material/Search";
 import PersonIcon from "@mui/icons-material/Person";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import { Box } from "@mui/material";
+import { Box} from "@mui/material";
+import { useState } from "react";
+import { Menu, MenuBook } from "@mui/icons-material";
 
 const ThirdSection = () => {
+  
   return (
     <Stack
       sx={{
@@ -25,6 +29,8 @@ const ThirdSection = () => {
       mb:{xs:5,sm:0}
       }}
     >
+      
+  
       <img
         src={"/assets/image/grogin-logo-dark.png"}
         alt="logo"
